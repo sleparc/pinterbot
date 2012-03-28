@@ -1,4 +1,4 @@
-For Simon
+Pinterbot
 =========
 
 ## Introduction

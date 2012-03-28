@@ -40,7 +40,7 @@
   ];
 
   function Pinterest(username, password) {
-    this.username = username;
+    this.email    = username;
     this.password = password;
 
     if (!this.login()) {
@@ -50,33 +50,42 @@
 
   Pinterest.prototype = {
     login: function() {
-      request.get('http://pinterest.com/login/?next=%2Flogin%2F', function(err, res) {
-        console.log(res.body);
+      var self = this;
+
+      request.get('https://pinterest.com/login/?next=%2Flogin%2F', function(err, res) {
+        var options = {
+          followAllRedirects: true,
+          url: 'https://pinterest.com/login/?next=%2Flogin%2F',
+          form: {
+            email:    self.email,
+            password: self.password,
+            csrfmiddlewaretoken: self._getCsrfToken(res.headers)
+          }
+        };
+
+        request.post(options, function(err, res) {
+          console.log(res.body);
+        });
       });
-
-      //var options = {
-        //url: 'http://pinterest.com/login/?next=%2Flogin%2F',
-        //json: {
-          //login:    this.email,
-          //password: this.password
-        //}
-      //};
-
-      //request.post(options, function(err, res) {
-        //console.log(res.headers);
-        //console.log(res.body);
-      //});
 
       return 1;
     },
 
-    createBoard: function() {
-      return 'http://pinterest.com/board/create';
+    _getCsrfToken: function(headers) {
+      var cookie, cookies = headers['set-cookie'][0].split(';')
+      for (var c in cookies) {
+        if (cookies[c].match(/csrf/)) {
+          cookie = cookies[c].match(/csrftoken=(.*)/)[1];
+        }
+      }
+      return cookie;
     }
   };
 
   console.log('Running Pinterbot!');
 
-  account = new Pinterest('westoque', 'password');
+  // This is in cleartext right now
+  // Just for testing.. DONT COMMIT ANYTHING BEYOND THIS POINT
+  account = new Pinterest('william.estoque@gmail.com', 'YOUR_PASSWORD_HERE');
 
 })();

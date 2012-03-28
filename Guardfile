@@ -1,5 +1,5 @@
 guard :shell do
-  watch(/.*/) {
+  watch(/.*/) do |changed|
     `node pinterbot.js`
-  }
+  end
 end
