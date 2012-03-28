@@ -8,4 +8,4 @@ French citizens who live in the United States.
 
 ## Quick and Dirty (Just how the French like it)
 
-PUT THE TODO HERE
+Run `node pinterest.js`. The coffeescript file doesn't do anything yet.
