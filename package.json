@@ -1,0 +1,10 @@
+{
+    "name": "pinterbot",
+    "description": "Friendly neighborhood pinterest bot!",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+      "request" : "*",
+      "jsdom"   : "*"
+    }
+}
