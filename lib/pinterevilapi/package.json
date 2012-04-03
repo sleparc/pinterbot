@@ -1,0 +1,15 @@
+{
+  "name": "pinterevilapi",
+  "description": "The evil Pinterest API. No limits. Just a plain old user that we are :-)",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "request"       : "2.9.153",
+    "jsdom"         : "*",
+    "coffee-script" : "*"
+  },
+  "devDependencies": {
+    "jasmine-node" : "*"
+  },
+  "main": "./index"
+}

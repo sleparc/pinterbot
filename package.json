@@ -4,7 +4,8 @@
     "version": "0.0.1",
     "private": true,
     "dependencies": {
-      "request" : "2.9.153",
-      "jsdom"   : "*"
+      "request"       : "2.9.153",
+      "jsdom"         : "*",
+      "coffee-script" : "*"
     }
 }
