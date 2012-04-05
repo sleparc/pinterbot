@@ -155,6 +155,29 @@ class Account
       console.log 'Unfollowed user ' + name + '\n'
       console.log res.body
 
+  navigate: (url, callback) ->
+    self = this
+
+    # Fake the ajax request
+    self.headers['x-csrftoken']      = @csrftoken
+    self.headers['x-requested-with'] = 'XMLHttpRequest'
+
+    options =
+      url: url
+      headers: self.headers
+
+    request.post options, (err, res) ->
+      console.log "request done"
+      jsdomHash = 
+        html: res.body,
+        scripts: ['http://code.jquery.com/jquery-1.5.min.js']
+
+      jsdom.env jsdomHash, (err, window) ->
+        $ = window.jQuery
+        console.log "calling callback"
+        return callback(err, window, $)
+
+
   _setCsrfToken: (headers) ->
     cookies = headers['set-cookie'][0].split(';')
     cookie  = (item for item in cookies when item.match(/csrf/))[0]
