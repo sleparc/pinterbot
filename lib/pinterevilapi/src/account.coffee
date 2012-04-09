@@ -175,12 +175,13 @@ class Account
       jsdom.env jsdomHash, (err, window) ->
         $ = window.jQuery
         console.log "calling callback"
-        return callback(err, window, $)
+        callback(err, window, $)
 
 
   _setCsrfToken: (headers) ->
     cookies = headers['set-cookie'][0].split(';')
     cookie  = (item for item in cookies when item.match(/csrf/))[0]
     cookie.match(/csrftoken=(.*)/)[1]
+
 
 module.exports = Account
