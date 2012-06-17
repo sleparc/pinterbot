@@ -24,7 +24,8 @@ pins.each do |pin|
   id = pin["id"]
   username = pin["user"]["username"]
   score = pin["counts"]["repins"] * 3 + pin["counts"]["comments"] * 2 + pin["counts"]["likes"]
-  pin_array << {:id => id, :username => username, :score => score}
+  img = pin["images"]["closeup"]
+  pin_array << {:id => id, :username => username, :score => score, :img => img}
 end
 
 pins_sorted = pin_array.sort {|a,b| b[:score] <=> a[:score] }

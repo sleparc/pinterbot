@@ -166,7 +166,7 @@ class Account
       url: url
       headers: self.headers
 
-    request.post options, (err, res) ->
+    request.get options, (err, res) ->
       console.log "request done"
       jsdomHash = 
         html: res.body,
